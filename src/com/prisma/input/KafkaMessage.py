@@ -15,8 +15,8 @@ class Producer(threading.Thread):
     daemon = True
 
     def run(self):
-        producer = KafkaProducer(bootstrap_servers='localhost:9092')
-        #producer = KafkaProducer(bootstrap_servers='deepc04.acis.ufl.edu:9092')
+        #producer = KafkaProducer(bootstrap_servers='localhost:9092')
+        producer = KafkaProducer(bootstrap_servers='deepc04.acis.ufl.edu:9092')
         
         """
         while True:
@@ -66,6 +66,7 @@ def job(t):
     main()
     print "I'm working...", t, datetime.datetime.now()
     return
+
     
 schedule.every(1).minutes.do(job,"time: ")
 #schedule.every().second().do(job,'It is 01:00')

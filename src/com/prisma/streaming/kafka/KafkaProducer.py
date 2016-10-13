@@ -12,6 +12,7 @@ Created on Sep 6, 2016
 """
 
 import time
+import pandas as pd
 #from kafka import KafkaConsumer, KafkaProducer
 
 from kafka import SimpleProducer, KafkaClient
@@ -24,15 +25,15 @@ def print_response(response=None):
         print('Offset: {0}'.format(response[0].offset))
 
 
-def Producer():
+def Producer(msg):
     #producer = KafkaProducer(bootstrap_servers='deepc04.acis.ufl.edu:9092')
     #producer.send('test', b"testingt123456")
     
-    kafka = KafkaClient("deepc04.acis.ufl.edu:9092")
+    kafka = KafkaClient("deepc06.acis.ufl.edu:9092")
     producer = SimpleProducer(kafka)
 
     topic = b'test'
-    msg = b'Hello World from Me/Rajendra!'
+    #msg = b'Hello World from Me/Rajendra!'
 
     try:
         print_response(producer.send_messages(topic, msg))
@@ -43,6 +44,27 @@ def Producer():
 
     kafka.close()
 
-#Producer()
+
+df = pd.read_csv("/home/rajendra/workspace/Prisma/data/processed_data.csv")
+#df = pd.read_csv("/home/rajendra/workspace/csv/processed_data.csv")
+#df_json = df.to_json(orient="records")#df.reset_index().to_json()
+#df =  df.iloc[:1,:]
+print df.columns
+print df.dtypes
+
+#print pd.__version__
+
+
+for idx, row in df.iterrows():
+    df_json = row.to_json() #df.reset_index().to_json(orient="records")
+    msg = df_json
+    print msg
+    Producer(msg)
+
     
+#for msg in messages:
+#    msg_str = json.dumps(msg)
+#    print(msg_str)
+    
+#Producer()
     

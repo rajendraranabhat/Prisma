@@ -32,6 +32,8 @@ create table users1_by_age (
     name text,
     primary key(age, user_id));
     
+CREATE TABLE predict ( id UUID PRIMARY KEY, Score_cvcomp double, Score_mvcomp double );
     
+CREATE TABLE predict ( acc double PRIMARY KEY, Score_cvcomp double, Score_mvcomp double );
     
     

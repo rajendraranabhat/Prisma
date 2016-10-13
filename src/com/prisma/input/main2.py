@@ -14,7 +14,7 @@ import comorbidity_conditions2 as cc2
 import zipcode_information as zz
 
 #path = 'M:/IDEALIST/3 IDEALIST Data Core/2 Working Data/Creating Fake Stream Data/'
-path ="/home/rbhat/workspace/S3Lab_Projects/Deep-Medicine/PrismaInput/"
+path ="/home/rajendra/workspace/Prisma/input/"
 def preprocess():
     #read raw files ( not reading extraneous columns to avoid unneccesary loading time)
     print("Loading Data from SUF....")
@@ -228,7 +228,7 @@ def preprocess():
     df=df[['acc','age','Gender','race2','zip5','pay_grp','County','rural','total','Med_inc','prop_black','prop_hisp','Prop_pov','zipdist2','admit_day1','admit_mth',	'Year_of_admission',	'weekend_adm',	'attend_doc',	'Admission_Source',	'Admitting_Service',	'Admitting_type',	'emergent',	'pr1_day',	'service1',	'pr1c',	'cci',	'NDX',	'MDC',	'imi',	'ichf',	'ipvd',	'icvd',	'icpd',	'liverd',	'diabetes',	'icancer',	'imcancer',	'cancer',	'VALVE',	'HYPOTHY',	'COAG',	'OBESE',	'WGHTLOSS',	'LYTES',	'alc_drug','anemia','DEPRESS','HTN_C','PARA','NEURO','no_meds_on_adm','aminog_adm','bicarb_adm','diuret_adm','steroi_adm','vanco_adm','ace_adm','nsaids_adm','asa_adm','antiemetic_adm','betablockers_adm','statin_adm','inot_pres_adm','min_HGB','max_PROTUR_gr2','max_HGBUR_gr','max_GLUURN_gr','count_HGBn','count_PROTURn','CKD_corr','esrd_corr','eGFR_epi_new','ratio_firstCr_mdrd']]
 
     print("Processing of data complete.Writing to csv...")
-    df.to_csv("processeddata.csv" ,sep=',',index = False)
+    df.to_csv("processed_data1.csv" ,sep=',',index = False)
 
     print("Writing to csv complete.Final File generated")
     print time.clock() - t0, "seconds process time"

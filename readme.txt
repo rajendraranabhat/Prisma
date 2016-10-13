@@ -50,15 +50,17 @@ sudo pip install schedule
 5. cassandra
 sudo pip install cassandra-driver
 
+https://medium.com/@amirziai/running-pyspark-with-cassandra-in-jupyter-2bf5e95c319#.4v74w9ftf
 http://rustyrazorblade.com/2015/05/on-the-bleeding-edge-pyspark-dataframes-and-cassandra/
+http://hello-poonamagrawal.blogspot.com/2015/09/spark-and-pyspark-cassandra-connector.html
+http://blog.katychuang.com/blog/2015-09-30-kafka_spark.html
 
-6. http://blog.katychuang.com/blog/2015-09-30-kafka_spark.html
 
-7. 
+6. 
 spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0,TargetHolding/pyspark-cassandra:0.1.5 
    --conf spark.cassandra.connection.host=deepc04.acis.ufl.edu Cassandra.py my-topic
 
-8. 
+7. 
 spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0,TargetHolding/pyspark-cassandra:0.1.5 
    --conf spark.cassandra.connection.host=deepc04.acis.ufl.edu IrisDemo.py
 
