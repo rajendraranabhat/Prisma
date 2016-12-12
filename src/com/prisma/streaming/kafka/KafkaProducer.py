@@ -48,7 +48,7 @@ def Producer(msg):
 df = pd.read_csv("/home/rajendra/workspace/Prisma/data/processed_data.csv")
 #df = pd.read_csv("/home/rajendra/workspace/csv/processed_data.csv")
 #df_json = df.to_json(orient="records")#df.reset_index().to_json()
-#df =  df.iloc[:1,:]
+df =  df.iloc[:1,:]
 print df.columns
 print df.dtypes
 

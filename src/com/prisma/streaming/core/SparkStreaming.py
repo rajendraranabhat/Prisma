@@ -62,11 +62,32 @@ def process(rdd):
     
     df_mf = sqlContext.createDataFrame(pred)
     
-    predict_table = sqlContext.read.format("org.apache.spark.sql.cassandra").load(keyspace="prisma", table="predict")
+    #predict_table = sqlContext.read.format("org.apache.spark.sql.cassandra").load(keyspace="prisma", table="predict")
     
-    df_mf.select(df_mf['acc'],df_mf['score_cvcomp'],df_mf['score_mvcomp']).write.format("org.apache.spark.sql.cassandra").\
-          options(table="predict", keyspace="prisma").save(mode="append")
-
+    #score_woundcomp;score_neuro_delirium
+    #df_mf.select(df_mf['acc'],df_mf['score_cvcomp'],df_mf['score_mvcomp']).write.format("org.apache.spark.sql.cassandra").\
+    #      options(table="predict", keyspace="prisma").save(mode="append")
+          
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_sepsis'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_sepsis", keyspace="prisma1").save(mode="append")
+    
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_icucomp'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_icu", keyspace="prisma1").save(mode="append")
+          
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_cvcomp'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_cardiovascular", keyspace="prisma1").save(mode="append")
+    
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_aki'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_rifle7", keyspace="prisma1").save(mode="append")
+          
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_mvcomp'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_mortality", keyspace="prisma1").save(mode="append")
+          
+    df_mf.select(df_mf['acc'].alias("id"),df_mf['score_vte'].alias("outcome")).write.format("org.apache.spark.sql.cassandra").\
+          options(table="outcome_ventilator", keyspace="prisma1").save(mode="append")
+    
+    print "%s, %s, %s, %s, %s, %s, %s"%(df_mf['acc'],df_mf['score_sepsis'],df_mf['score_icucomp'],df_mf['score_cvcomp'],df_mf['score_aki']
+                                        ,df_mf['score_mvcomp'],df_mf['score_vte'])
 
 if __name__ == "__main__":
     
